@@ -1,0 +1,8 @@
+/app/
+/bootstrap/
+/config/
+/database/
+/docker/
+/routes/
+/storage/
+/tests/
