@@ -15,8 +15,12 @@ import Header from "../components/layout/Header.vue";
 import Chat from "../components/chat/Chat.vue";
 import Footer from "../components/layout/Footer.vue";
 import LoginAs from "../components/user/LoginAs.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import axios from "axios";
 
 const user = ref(null);
 
+watch(user, (user) => {
+    axios.defaults.headers.common["X-User"] = user?.id;
+});
 </script>

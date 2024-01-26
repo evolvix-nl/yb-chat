@@ -24,6 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'role' => fake()->randomElement(['employee', 'employer']),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -40,5 +41,23 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function employer(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'employer',
+            ];
+        });
+    }
+
+    public function employee(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'employee',
+            ];
+        });
     }
 }

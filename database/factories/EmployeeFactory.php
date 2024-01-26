@@ -15,7 +15,7 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->employee(),
 
             'first_name' => ($firstName = fake()->firstName),
             'last_name' => ($lastName = fake()->lastName),

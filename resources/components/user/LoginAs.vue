@@ -1,24 +1,21 @@
 <template>
-    <label for="login-as">
-        Login as:
-    </label>
+    <label for="login-as"> Login as: </label>
 
     <select v-model="user" class="text-black">
         <option :value="null"></option>
-        <option v-for="user in users" :value="user">
-            {{ user.email }}
+        <option v-for="user in users" :value="user" :key="user.id">
+            {{ user.id }} - {{ user.role }} - {{ user.email }}
         </option>
     </select>
 </template>
 <script setup lang="ts">
-
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-type User = { email: string };
+type User = { id: number; role: "employee" | "employer"; email: string };
 
 const emit = defineEmits(["loginAs"]);
-const user = defineModel<User|null>()
+const user = defineModel<User | null>();
 
 const users = ref([] as Array<User>);
 
@@ -26,6 +23,4 @@ onMounted(async () => {
     const { data } = await axios.get("/api/users");
     users.value = data.data;
 });
-
 </script>
-
